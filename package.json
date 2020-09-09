@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-eslint": "^3.0.0",
+    "grunt-react-templates": "0.5.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "private": true,
+  "scripts": {
+    "test": "echo 0"
+  },
+  "name": "ecma6-review",
+  "description": "Starter project for [react-templates](https://github.com/wix/react-templates)",
+  "version": "1.0.0",
+  "main": "Gruntfile.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.44.1"
+  }
+}
