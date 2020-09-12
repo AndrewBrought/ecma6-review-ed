@@ -242,4 +242,19 @@ shoppingList.forEach((product, index) => {
 // Map
 // Map allows us to make a copy of the array and modify it
 
+const newlist = shoppingList.map(item => {
+   return item + " new";
+});
+//which can be broken down like this
+const newlist = shoppingList.map(item => item + " - new"); // returns new list with the items to be manipulated
+
+console.log(newlist);
+
+// Filter
+const filterList = shoppingList.filter(item => item !== "Cow"); // returns items that arent Cow
+
+console.log(filterList);
+
+//Constructor Function
+
 
