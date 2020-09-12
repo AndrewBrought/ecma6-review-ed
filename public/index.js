@@ -147,5 +147,99 @@ const sayLocation = location => {
 
 sayLocation('Paris');
 
+//When returning one thing we can simplify the function
+const sayLocation = location => console.log(`My current location is in ${location}`);
+
+// How we attach this to an object
+//OLD JAVASCRIPT
+
+var user = {
+    name: 'Ed',
+    age: 25,
+    sayName: function() {
+        console.log('My name is ' + this.name);
+            var that = this;
+        var details = function(){
+            //In this context 'this' is referring to sayName not user, so name and age will return undefined
+            // Apparently it used to be a work around to daisy chain this to that
+            console.log("My name is " + that.name + " and my age is " + this.age);
+        };
+        details();
+    }
+};
+
+user.sayName(); // 'My name is Ed'
+
+//ES6
+
+const user = {
+    name: 'Ed',
+    age: 25,
+    sayName: function(){
+        console.log(`My name is ${this.name}`);
+        //In es6 the arrow function 'intuitively' understands 'this' refers to the object that the function is nested in
+        const sayDetails = () => {
+            console.log(`My name is ${this.name} and ${this.age}`);
+        };
+        sayDetails();
+    }
+};
+
+user.sayName();
+
+// practical example where this might be used/seen
+button.addEventListener('click', function(){
+   var addFade = () => {
+     this.style.display = "none";
+   };
+});
+
+
+//Default Parameters
+//OLD JAVASCRIPT
+
+function multiply(x, y) {
+    console.log(x * y);
+}
+
+multiply(5, 10) // 50
+// problem with this is that if left empty it returns:
+multiply() // NaN
+
+// A way to prevent this is
+function multiply(x, y) {
+    var a = x || 1;
+    var b = y || 1;
+    console.log(a * b);
+}
+
+multiply(); // now this returns 1
+//But this is clunky
+
+//ES6
+
+const add = (c = 1, d = 1) => {
+  console.log(c + d);
+};
+
+add(); // when left empty, this returns 2
+
+//Array Functions
+// ES6
+
+const shoppingList = ['Milk', 'Cow', 'Chocolate', 'Eggs', 'Bananas'];
+
+// forEach
+
+shoppingList.forEach(product => {
+    console.log(product); // this returns an iterated list of products
+});
+
+shoppingList.forEach((product, index) => {
+    console.log(`Ths index is ${index} and the product is ${product}`);
+});
+
+// Map
+// Map allows us to make a copy of the array and modify it
 
 
