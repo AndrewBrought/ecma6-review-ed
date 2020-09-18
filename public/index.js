@@ -255,6 +255,109 @@ const filterList = shoppingList.filter(item => item !== "Cow"); // returns items
 
 console.log(filterList);
 
-//Constructor Function
+//Constructor Function and Classes
+
+//OLD JAVASCRIPT
+
+//A constructor is a blueprint that let's us create an object - when we call that function, it creates an object
+
+function Person(name, age, hairColor) {
+    this.name = name;
+    this.age = age;
+    this.hairColor = hairColor;
+}
+
+Person.prototype.sayName = function() {
+    console.log('my name is ' +  this.name);
+}
+
+var Ed = new Person('Ed', '25', 'brown');
+console.log(Ed); // returns the complete object of Ed
+Ed.sayName(); // returns My name is Ed
+
+function Ed(ocupation, likes, hobbies, name, age, hairColor) {
+    Person.call(this, name, age, hairColor);
+    this.ocupation = ocupation;
+    this.likes = likes;
+    this.hobbies = hobbies;
+}
+
+//this is how we assign the Person function to Ed
+Ed.prototype = Object.create(Person.prototype);
+
+const person = new Ed('Dev', 'nature', 'dancing', 'edwin', '25', 'brown');
+
+person.sayName();
+
+//ES6
+// instead of creating a constructor object we can use a class
+
+class shoppingList {
+    constructor(items, numItems) {
+        this.items = items;
+        this.numItems = numItems;
+    }
+    sayList(){
+        console.log(this.items);
+    }
+}
+
+const myList = new ShoppingList(['Milk, Choco, Redbull'], 3);
+console.log(myList); //returns ShoppingList { items: [ 'Milk, Choco, Redbull' ], numItems: 3 }
+
+myList.sayList(); // returns ['Milk, Choco, Redbull']
+
+class Product extends ShoppingList {
+    constructor(items, numItems, amount, cost) {
+        super(items, numItems);
+        this.amount = amount;
+        this.cost = cost;
+    }
+}
+
+const product = new Product(['Redbull, Chocolate, Candy'], 3, 2, 20);
+
+console.log(product);
+
+product.sayList();
+
+//Callbacks
+//OLD JAVASCRIPT
+
+console.log('First');
+//This will only run when we get back the info
+function getData(data, callback) {
+    //this is simulating a call
+    setTimeout(() => {
+        console.log('reading from database')
+        callback({ data: data });
+    }, 2000);
+}
+
+getData(5, function (data) {
+    console.log(data);
+});
+
+console.log('Last');
+// What will actually happen is our return will be:
+// First
+//Last
+//data: 5
+//because callbacks don't stall other code in waiting
+
+//ES6
+
+//create a new promise - which is just an operation that's going to finish in the future
+
+const prom = new Promise((resolve, reject) => {
+//    Everything in here is asynchronous
+    setTimeout(() => {
+       resolve({ user: 'Ed', hairColor: 'brown'});
+    }, 2000);
+});
+
+prom.then(data => {
+   console.log(data); //in 2 seconds return { user: Ed, hairColor: brown }
+});
 
 
